@@ -44,7 +44,7 @@ class PlayerControllerTest {
     @Test
     void testValidIdShouldReturnPlayer() {
         String document = """
-                query findOne($id: ID) {
+                query MyQuery($id: ID) {
                   findOne(id: $id) {
                     id
                     name
@@ -67,7 +67,7 @@ class PlayerControllerTest {
     @Test
     void testInvalidIdShouldReturnNull() {
         String document = """
-                query findOne($id: ID) {
+                query MyQuery($id: ID) {
                   findOne(id: $id) {
                     id
                     name
@@ -87,7 +87,7 @@ class PlayerControllerTest {
     void testShouldCreateNewPlayer() {
         int currentCount = playerService.findAll().size();
         String document = """
-                mutation create($name: String, $team: Team) {
+                mutation myMutation($name: String, $team: Team) {
                   create(name: $name, team: $team) {
                     id
                     name
@@ -113,7 +113,7 @@ class PlayerControllerTest {
     @Test
     void testShouldUpdateExistingPlayer() {
         String document = """
-                mutation update($id: ID, $name: String, $team: Team) {
+                mutation myMutation($id: ID, $name: String, $team: Team) {
                   update(id: $id, name: $name, team: $team) {
                     id
                     name
@@ -139,7 +139,7 @@ class PlayerControllerTest {
         int currentCount = playerService.findAll().size();
 
         String document = """
-                mutation delete($id: ID) {
+                mutation myMutation($id: ID) {
                   delete(id: $id) {
                     id
                     name
